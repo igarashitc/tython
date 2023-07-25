@@ -11,7 +11,7 @@ ar = 4*sb/cc
 #mean molecular weight
 mmw = 0.5
 #unit density in this simulation
-de = 1e-10
+de = 3e-11
 #black hole mass per solar mass
 bh = 1e7
 #proton mass 

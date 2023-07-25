@@ -148,7 +148,7 @@ def absorption_depth(ro,pr,z,density=1,length=1):
 
     return depth
 
-def thomson_depth(ro,z,density=1,length=1,zpt=100):
+def thomson_depth(ro,z,density=1,length=1):
     nx = ro.shape[2]
     ny = ro.shape[1]
     nz = ro.shape[0]
@@ -157,6 +157,7 @@ def thomson_depth(ro,z,density=1,length=1,zpt=100):
 
     depth = np.zeros([nz,ny,nx])
 
+    zpt = 100
     zu  = np.argmin(abs(z-zpt))
     zd  = np.argmin(abs(-z-zpt))
     z0  = np.argmin(abs(z))
@@ -168,7 +169,7 @@ def thomson_depth(ro,z,density=1,length=1,zpt=100):
                 depth[k,j,i] = depth[k-1,j,i] + ro[k,j,i]*kes*dz
 
     for k in reversed(range(z0,zu)):
-        dz = np.abs(z[k+1]-z[k-1])*0.5
+        dz = abs(z[k+1]-z[k-1])*0.5
         for j in range(ny):
             for i in range(nx):
                 depth[k,j,i] = depth[k+1,j,i] + ro[k,j,i]*kes*dz

@@ -1,3 +1,5 @@
 import numpy as np
+import average as av
 
-def  
+def maxwell_rphi(br,bphi):
+    
