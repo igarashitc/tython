@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 
 class plot_cyl:
 
-    def polar_2d(data, r, p, cmp="coolwarm", vmax=2, vmin=-2):
+    def polar_2d(r, p, data, cmap="coolwarm", vmax=2, vmin=-2):
         dr = abs(r[1]-r[0])*0.5e0
         dp = abs(p[1]-p[0])*0.5e0
 
@@ -14,7 +14,7 @@ class plot_cyl:
         R,P = np.meshgrid(r-0.5*dr,tmp)
         X,Y = R*np.cos(P), R*np.sin(P)
 
-        plt.pcolormesh(X,Y,data,cmap=cmp,vmax=vmax,vmin=vmin)
+        plt.pcolormesh(X,Y,data,cmap=cmap,vmax=vmax,vmin=vmin)
         plt.gca().set_aspect("equal")
 
         return 
