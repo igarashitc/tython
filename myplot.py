@@ -10,11 +10,12 @@ class plot_cyl:
         dp = abs(p[1]-p[0])*0.5e0
 
         tmp = p
-        tmp[1:] = tmp[1:]+dy
+        tmp[1:] = tmp[1:]+dp
+        print(tmp.max())
         R,P = np.meshgrid(r-0.5*dr,tmp)
         X,Y = R*np.cos(P), R*np.sin(P)
 
-        plt.pcolormesh(X,Y,data,cmap=cmp,vmax=vmax,vmin=vmin)
+        plt.pcolormesh(X,Y,data,cmap=cmp,vmax=vmax,vmin=vmin,shading="gourand")
         plt.gca().set_aspect("equal")
 
         return 
