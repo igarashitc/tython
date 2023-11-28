@@ -7,12 +7,12 @@ import matplotlib.pyplot as plt
         dr = abs(r[1]-r[0])*0.5e0
         dp = abs(p[1]-p[0])*0.5e0
 
-        tmp = p
-        tmp[1:] = tmp[1:]+dy
-        R,P = np.meshgrid(r-0.5*dr,tmp)
-        X,Y = R*np.cos(P), R*np.sin(P)
+        tmp = p.copy()
+        tmp[1:] = tmp[1:]+dp
+        Rad,Phi = np.meshgrid(r-0.5*dr,tmp)
+        X,Y = Rad*np.cos(Phi), Rad*np.sin(Phi)
 
-        plt.pcolormesh(X,Y,data,cmap=cmap,vmax=vmax,vmin=vmin)
+        plt.pcolormesh(X,Y,data,cmap=cmap,vmax=vmax,vmin=vmin,shading="gourand")
         plt.gca().set_aspect("equal")
 
         return 
