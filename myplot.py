@@ -3,8 +3,6 @@ import numpy as np
 import scipy as np
 import matplotlib.pyplot as plt
 
-class plot_cyl:
-
     def polar_2d(r, p, data, cmap="coolwarm", vmax=2, vmin=-2):
         dr = abs(r[1]-r[0])*0.5e0
         dp = abs(p[1]-p[0])*0.5e0
@@ -22,7 +20,7 @@ class plot_cyl:
     #
     # plot poloidal plane
     #
-    def plot_rz_spread(self, qql, qqr, x, z,\
+    def plot_rz_spread(qql, qqr, x, z,\
                         x1=80., z1=-20., z2=60.,\
                         xts=np.linspace(0,80,5), zts=np.linspace(-20,60,5),\
                         cml="plasma", cmr="plasma",\
