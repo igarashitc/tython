@@ -1,5 +1,58 @@
 import numpy as np
 
+class accretion:
+
+  def __init__(self, val, r, p, z):
+    #value
+    self.val = val
+
+    #coordinate in cylindrical
+    self.r = r
+    self.p = p
+    self.z = z
+
+    self.nr = r.shape[0]
+    self.ny = p.shape[0]
+    self.nz = z.shape[0]
+
+  def vertical_integrate(self, *args):
+    
+    sig = np.zeros([   self.nr])
+    srf = np.zeros([2, self.nr])
+
+    if (len(args) == 0):
+      zpt = 40.0
+      zu  = np.argmin(np.abs(self.z-zpt))
+      zd  = np.argmin(np.abs(self.z+zpt))
+      srf[0,:] = zd
+      srf[1,:] = zu
+
+    elif (type(args[0]) == np.float):
+      zpt = args[0]
+      zu  = np.argmin(np.abs(self.z-zpt))
+      zd  = np.argmin(np.abs(self.z+zpt))
+      srf[0,:] = zd
+      srf[1,:] = zu
+
+    elif (type(args[0]) == np.ndarray):
+      print("on going")
+
+    else:
+      print("type missmach")
+
+    srf = np.asarray(srf, np.int)
+    print(srf[0,100],srf[1,100])
+
+    for i in range(self.nr):
+      for j in range(self.ny):
+        for k in range(srf[0,i],srf[1,i]):
+          dz = np.abs(self.z[k+1]-self.z[k-1])*0.5
+          sig[i] = sig[i] + self.val[k,j,i]*dz
+
+    return sig
+
+      
+
 def calc(ro,vx,x,y,z,density=1,length=1):
     from tython import radiation as rd
 
